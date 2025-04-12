@@ -16,7 +16,7 @@
       background-color: #0a0a0a;
       color: white;
       overflow-x: hidden;
-      min-height: 100vh; /* Ensure the body fills the screen */
+      min-height: 100vh;
     }
     #particles-bg {
       position: fixed;
@@ -35,7 +35,7 @@
       align-items: center;
     }
     .logo {
-      font-size: 1.5rem;
+      font-size: 3rem; /* Increased logo size */
       font-weight: bold;
     }
     .logo span:first-child {
@@ -107,17 +107,24 @@
       color: #d1d1d1;
     }
     .card button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
+      margin-top: 1.5rem;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
       background: linear-gradient(to right, #a259ff, #6d28d9);
       color: white;
       border: none;
       border-radius: 0.5rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s;
     }
     .card button:hover {
       background: linear-gradient(to right, #6d28d9, #a259ff);
+      box-shadow: 0 4px 20px rgba(156, 39, 176, 0.6);
+      transform: scale(1.05);
+    }
+    .card button:active {
+      box-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
+      transform: scale(0.95);
     }
     .copyright-footer {
       background-color: #1c1c1c;
@@ -128,65 +135,26 @@
       margin-top: 4rem;
     }
     .instagram-button {
-      display: inline-flex;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: white;
-      border: none;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .instagram-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 14px rgba(255, 64, 129, 0.5);
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
     .instagram-button img {
-      width: 22px;
-      height: 22px;
-    }
-    .floating-instagram {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: white; /* White background */
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      cursor: pointer;
-      z-index: 9999;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .floating-instagram:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
-    }
-    .floating-instagram img {
-      width: 35px;
-      height: 35px;
-      border-radius: 10px;
-    }
-
-    /* Responsive Heading */
-    @media screen and (max-width: 768px) {
-      .section-title {
-        font-size: 2rem;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .section-title {
-        font-size: 1.5rem;
-      }
+      width: 30px;
+      height: 30px;
     }
   </style>
 </head>
@@ -200,34 +168,33 @@
 
   <section class="grid">
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Shubham2559-stack/HDD-Play/refs/heads/main/N9eWhdggTZqbidG1ud7NJw.jpg" alt="Question Bank" />
+      <img src="questionbank.jpg" alt="Question Bank" />
       <h3>Question Banks / Modules</h3>
       <p>Comprehensive collection of practice questions</p>
       <button>Download</button>
     </div>
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Shubham2559-stack/HDD-Play/refs/heads/main/N9eWhdggTZqbidG1ud7NJw.jpg" alt="Previous Year Questions" />
+      <img src="pyq.jpg" alt="Previous Year Questions" />
       <h3>Previous Year Questions</h3>
       <p>Last 10 years' solved question papers</p>
       <button>Download</button>
     </div>
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Shubham2559-stack/HDD-Play/refs/heads/main/N9eWhdggTZqbidG1ud7NJw.jpg" alt="Practice Books" />
+      <img src="practicebook.jpg" alt="Practice Books" />
       <h3>Practice Books</h3>
       <p>Subject-wise practice workbooks</p>
       <button>Download</button>
     </div>
   </section>
-
+  
   <div class="copyright-footer">
     &copy; 2025 HDD Play. All rights reserved.
   </div>
 
-  <div class="floating-instagram">
-    <a href="https://www.instagram.com/yourhandle" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
-    </a>
-  </div>
+  <!-- Floating Instagram Button -->
+  <a class="instagram-button" href="https://www.instagram.com/yourhandle" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
+  </a>
 
   <script>
     const canvas = document.getElementById('particles-bg');
