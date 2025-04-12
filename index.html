@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HDD Play</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,158 +13,275 @@
       font-family: 'Inter', sans-serif;
     }
     body {
-      background-color: #0f0f0f;
-      color: #ffffff;
+      background-color: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh; /* Ensure the body fills the screen */
+    }
+    #particles-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
     }
     header {
-      background-color: #1a1a1a;
+      background-color: #1c1c1c;
+      padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* Center the logo */
       align-items: center;
-      padding: 20px;
     }
     .logo {
-      font-weight: 800;
       font-size: 1.5rem;
-      color: #c77dff;
+      font-weight: bold;
     }
-    nav a {
+    .logo span:first-child {
       color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 600;
     }
-    .main-heading {
+    .logo span:last-child {
+      color: black;
+      background-color: #FFA500;
+      padding: 0 0.3rem;
+      border-radius: 0.3rem;
+      margin-left: 0.2rem;
+    }
+    .section-title {
       text-align: center;
-      font-size: 2rem;
-      color: #c77dff;
-      margin: 30px 0;
+      font-size: 2.5rem;
+      margin: 2rem 0;
+      color: #c084fc;
+      line-height: 1.2;
     }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 0 20px;
+    .typing {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 5s steps(40, end) forwards;
+      background: linear-gradient(90deg, #ff8a00, #e52e71, #6d28d9, #00c6ff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: typing 5s steps(40, end) forwards, gradientMove 6s ease infinite;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem;
     }
     .card {
-      background-color: #1f1f1f;
-      border-radius: 10px;
-      padding: 20px;
-      width: 300px;
+      background-color: #1c1c1c;
+      padding: 1rem;
+      border-radius: 0.75rem;
       text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 2px solid transparent;
+    }
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 0 20px #c084fc;
+      border: 2px solid #c084fc;
     }
     .card img {
-      width: 100%;
-      border-radius: 10px;
+      max-width: 100%;
+      border-radius: 0.5rem;
     }
     .card h3 {
-      margin-top: 15px;
-      color: white;
+      margin: 1rem 0 0.5rem;
+      font-size: 1.1rem;
     }
     .card p {
-      color: #bbbbbb;
-      margin: 10px 0;
+      font-size: 0.9rem;
+      color: #d1d1d1;
     }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: linear-gradient(90deg, #9d4edd, #7b2cbf);
-      border: none;
-      border-radius: 5px;
+    .card button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(to right, #a259ff, #6d28d9);
       color: white;
-      text-decoration: none;
-      font-weight: 600;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    footer {
-      margin-top: 50px;
-      background-color: #1a1a1a;
+    .card button:hover {
+      background: linear-gradient(to right, #6d28d9, #a259ff);
+    }
+    .copyright-footer {
+      background-color: #1c1c1c;
+      padding: 2rem 1rem;
       text-align: center;
-      padding: 20px;
-      color: #bbbbbb;
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-top: 4rem;
     }
-    /* Telegram Button */
-    .telegram-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    .telegram-btn img {
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
+    .instagram-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white;
+      border: none;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .telegram-btn img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 10px #00bfff;
+    .instagram-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(255, 64, 129, 0.5);
     }
-    .card {
-  background-color: #111;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 0px rgba(0, 0, 0, 0);
-  border: 2px solid transparent;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
+    .instagram-button img {
+      width: 22px;
+      height: 22px;
+    }
+    .floating-instagram {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: white; /* White background */
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .floating-instagram:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+    }
+    .floating-instagram img {
+      width: 35px;
+      height: 35px;
+      border-radius: 10px;
+    }
 
-/* Hover Glow Effect + Move Up */
-.card:hover {
-  transform: translateY(-10px);
-  border: 2px solid #9333ea; /* Customize glow color */
-  box-shadow: 0 0 20px 4px rgba(147, 51, 234, 0.7);
-}
-
-
-
-    @media (max-width: 768px) {
-      .card-container {
-        flex-direction: column;
-        align-items: center;
+    /* Responsive Heading */
+    @media screen and (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
       }
-    } 
+    }
+
+    @media screen and (max-width: 480px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <canvas id="particles-bg"></canvas>
   <header>
-    <div class="logo">HDD Play</div>
+    <div class="logo"><span>HDD</span><span>Play</span></div>
   </header>
-  <h1 class="main-heading">HDD Play</h1>
 
-  <div class="card-container">
+  <h1 class="section-title"><span class="typing">Watch Premium Videos for Free</span></h1>
+
+  <section class="grid">
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Shubham2559-stack/HDD-Play/refs/heads/main/N9eWhdggTZqbidG1ud7NJw.webp" alt="Question Bank">
+      <img src="questionbank.jpg" alt="Question Bank" />
       <h3>Question Banks / Modules</h3>
       <p>Comprehensive collection of practice questions</p>
-      <a href="https://freekitaab.netlify.app/" class="btn">Access Now</a>
+      <button>Download</button>
     </div>
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Shubham2559-stack/HDD-Play/refs/heads/main/N9eWhdggTZqbidG1ud7NJw.webp" alt="Previous Year Questions">
+      <img src="pyq.jpg" alt="Previous Year Questions" />
       <h3>Previous Year Questions</h3>
       <p>Last 10 years' solved question papers</p>
-      <a href="https://freekitaab.netlify.app/" class="btn">Get Papers</a><br><br>
-      <a href="https://freekitaab.netlify.app/" class="btn">Get Papers</a><br><br>
-      <a href="https://freekitaab.netlify.app/" class="btn">Get Papers</a>
+      <button>Download</button>
     </div>
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Shubham2559-stack/HDD-Play/refs/heads/main/N9eWhdggTZqbidG1ud7NJw.webp" alt="Practice Books">
+      <img src="practicebook.jpg" alt="Practice Books" />
       <h3>Practice Books</h3>
       <p>Subject-wise practice workbooks</p>
-      <a href="https://freekitaab.netlify.app/" class="btn">Get Books</a>
+      <button>Download</button>
     </div>
+  </section>
+
+  <div class="copyright-footer">
+    &copy; 2025 HDD Play. All rights reserved.
   </div>
 
+  <div class="floating-instagram">
+    <a href="https://www.instagram.com/yourhandle" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
+    </a>
+  </div>
 
-  <!-- Telegram Button -->
-  <a class="telegram-btn" href="https://t.me/+Qu9l3vfhSkUzNjM1" target="_blank">
-    <img src="https://ibb.co/xZWLtVb" alt="Join Telegram" />
-  </a>
+  <script>
+    const canvas = document.getElementById('particles-bg');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
 
-  <footer>
-    <p>&copy; 2025 HDD Play. All rights reserved.</p>
-  </footer>
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 150; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+  </script>
 </body>
 </html>
