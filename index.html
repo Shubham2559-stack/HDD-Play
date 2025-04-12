@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDD Play</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0f0f0f;
+      color: #ffffff;
+    }
+    header {
+      background-color: #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #c77dff;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .main-heading {
+      text-align: center;
+      font-size: 2rem;
+      color: #c77dff;
+      margin: 30px 0;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .card {
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .card h3 {
+      margin-top: 15px;
+      color: white;
+    }
+    .card p {
+      color: #bbbbbb;
+      margin: 10px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #9d4edd, #7b2cbf);
+      border: none;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer {
+      margin-top: 50px;
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 20px;
+      color: #bbbbbb;
+    }
+    /* Telegram Button */
+    .telegram-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .telegram-btn img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .telegram-btn img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #00bfff;
+    }
+    .card {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Glow Effect + Move Up */
+.card:hover {
+  transform: translateY(-10px);
+  border: 2px solid #9333ea; /* Customize glow color */
+  box-shadow: 0 0 20px 4px rgba(147, 51, 234, 0.7);
+}
+
+
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    } 
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">HDD Play</div>
+    <nav>
+      <a href="#">Categories</a>
+      <a href="#">FAQ</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+  <h1 class="main-heading">HDD Play</h1>
+
+  <div class="card-container">
+    <div class="card">
+      <img src="/N9eWhdggTZqbidG1ud7NJw.png" alt="Question Bank">
+      <h3>Question Banks / Modules</h3>
+      <p>Comprehensive collection of practice questions</p>
+      <a href="https://freekitaab.netlify.app/" class="btn">Access Now</a>
+    </div>
+    <div class="card">
+      <img src="/N9eWhdggTZqbidG1ud7NJw.png" alt="Previous Year Questions">
+      <h3>Previous Year Questions</h3>
+      <p>Last 10 years' solved question papers</p>
+      <a href="https://freekitaab.netlify.app/" class="btn">Get Papers</a><br><br>
+      <a href="https://freekitaab.netlify.app/" class="btn">Get Papers</a><br><br>
+      <a href="https://freekitaab.netlify.app/" class="btn">Get Papers</a>
+    </div>
+    <div class="card">
+      <img src="/N9eWhdggTZqbidG1ud7NJw.png" alt="Practice Books">
+      <h3>Practice Books</h3>
+      <p>Subject-wise practice workbooks</p>
+      <a href="https://freekitaab.netlify.app/" class="btn">Get Books</a>
+    </div>
+  </div>
+
+
+  <!-- Telegram Button -->
+  <a class="telegram-btn" href="https://t.me/+Qu9l3vfhSkUzNjM1" target="_blank">
+    <img src="/telegram-icon-6896828_1280.png" alt="Join Telegram" />
+  </a>
+
+  <footer>
+    <p>&copy; 2025 HDD Play. All rights reserved.</p>
+  </footer>
+</body>
+</html>
