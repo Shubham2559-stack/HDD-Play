@@ -12,12 +12,14 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+
     body {
       background-color: #0a0a0a;
       color: white;
       overflow-x: hidden;
       min-height: 100vh;
     }
+
     #particles-bg {
       position: fixed;
       top: 0;
@@ -27,20 +29,24 @@
       z-index: -1;
       pointer-events: none;
     }
+
     header {
       background-color: #1c1c1c;
       padding: 1rem 2rem;
       display: flex;
-      justify-content: center; /* Center the logo */
+      justify-content: center;
       align-items: center;
     }
+
     .logo {
-      font-size: 3rem; /* Increased logo size */
+      font-size: 3rem;
       font-weight: bold;
     }
+
     .logo span:first-child {
       color: white;
     }
+
     .logo span:last-child {
       color: black;
       background-color: #FFA500;
@@ -48,6 +54,7 @@
       border-radius: 0.3rem;
       margin-left: 0.2rem;
     }
+
     .section-title {
       text-align: center;
       font-size: 2.5rem;
@@ -55,32 +62,14 @@
       color: #c084fc;
       line-height: 1.2;
     }
-    .typing {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      animation: typing 5s steps(40, end) forwards;
-      background: linear-gradient(90deg, #ff8a00, #e52e71, #6d28d9, #00c6ff);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: typing 5s steps(40, end) forwards, gradientMove 6s ease infinite;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding: 0 2rem;
     }
+
     .card {
       background-color: #1c1c1c;
       padding: 1rem;
@@ -89,23 +78,23 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       border: 2px solid transparent;
     }
+
     .card:hover {
       transform: translateY(-12px);
       box-shadow: 0 0 20px #c084fc;
       border: 2px solid #c084fc;
     }
+
     .card img {
       max-width: 100%;
       border-radius: 0.5rem;
     }
+
     .card h3 {
       margin: 1rem 0 0.5rem;
       font-size: 1.1rem;
     }
-    .card p {
-      font-size: 0.9rem;
-      color: #d1d1d1;
-    }
+
     .card button {
       margin-top: 1rem;
       padding: 0.5rem 1rem;
@@ -116,9 +105,11 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
+
     .card button:hover {
       background: linear-gradient(to right, #6d28d9, #a259ff);
     }
+
     .copyright-footer {
       background-color: #1c1c1c;
       padding: 2rem 1rem;
@@ -127,29 +118,7 @@
       color: #aaa;
       margin-top: 4rem;
     }
-    .instagram-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: white;
-      border: none;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .instagram-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 14px rgba(255, 64, 129, 0.5);
-    }
-    .instagram-button img {
-      width: 22px;
-      height: 22px;
-    }
+
     .floating-instagram {
       position: fixed;
       bottom: 30px;
@@ -166,141 +135,121 @@
       z-index: 9999;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .floating-instagram:hover {
       transform: scale(1.1);
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
     }
+
     .floating-instagram img {
       width: 35px;
       height: 35px;
       border-radius: 10px;
     }
-
-    /* Responsive Heading */
-    @media screen and (max-width: 768px) {
-      .section-title {
-        font-size: 2rem;
-      }
-      .logo {
-        font-size: 2.5rem; /* Adjusted for medium screens */
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .section-title {
-        font-size: 1.5rem;
-      }
-      .logo {
-        font-size: 2rem; /* Adjusted for smaller screens */
-      }
-    }
   </style>
 </head>
 <body>
-  <canvas id="particles-bg"></canvas>
-  <header>
-    <div class="logo"><span>HDD</span><span>Play</span></div>
-  </header>
 
-  <h1 class="section-title"><span class="typing">Watch Premium Videos for Free</span></h1>
+<canvas id="particles-bg"></canvas>
 
-  <section class="grid">
-    <div class="card">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYYLlJ8ppWPsbiie6hcOsfV5MtEkOiWNYF0iblcQ3xlm5TmSqnKNHrIg1h0rl42VmbYoMx0AEQTDofiXEsnz-QJa_bImL5UsufWsSWVG4S476mDwU8XAfhFOaiQ7xLsHSCDGrz0VhtKsqzD7j01qxvYi9Ztk-HojzlDuo770WHHNaKukgeHSgPw3i4n7U/s1600/MilakittenX-Blowjob-Riding-Sex-Video-Leaked.jpg" alt="POST - 01" />
-      <h3>POST - 01</h3>
-      <button>Direct Video</button><br>
-      <button>Terabox</button><br>
-    </div>
-    <div class="card">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizBK49UDvPaXsf2eJTsPiA5PibzCu3zuKzQ8G0R0l_SF_QIvvhg_Ou1OOeg05w-9SZEK0wT9m0Ywtwmv0CVW7xQdj2pjaulxTyGzavhpuRKMh4rlyafumUZ_UQbisFdPqdGZQGp08sOIU4ALBjcLFben0eibuJR_3CCeNV7gMVTIbAFcxilKOqRNT96-M/s1600/Sophia-Rouge-Blowjob-and-Doggystyle-Fuck-Video-Leaked.jpg" alt="POST - 02" />
-      <h3>POST - 02</h3>
-      <button>Direct Video</button><br>
-      <button>Terabox</button><br>
-    </div>
-    <div class="card">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhWWqeV7sZ8UQ74sF345oJd7MvHMzDk7h4nICNhXSA8AxY2UAjaCoIs7Dtpwu5cG9rCCholT8LPFfXMKchVkI-xtoG2mGFRoG4W6sc-Pa1IHXmWAikv-PR21PfInMVcOAek6lv62MiOgfgGw4P-xDrCoIrFQBxmDzbOOhgpprMO1TY4Is_viTe4G8POb18/s1600/PinupPixie-Maid-Sex-Cum-in-Mouth-Video-Leaked.jpg" alt="POST - 03" />
-      <h3>POST - 03</h3>
-      <button>Direct Video</button><br>
-      <button>Terabox</button><br>
-    </div>
-    <div class="card">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqzWAyjkFWNMzmia4779oIbvs3khWzL0tqkgw5SbxNS8U0tjk1jlYv-rsIQtqvraAnhy4Zi29V-_sR_8HmKUxuKdPyIQT88K7SsSQYHJ_7UTfBlbe-ei8glzTPlz2zm__UWbw3CjWXuaehZSRM2f4GUi8IEtRKLlGPozu2tgMfRFvuNWt3gJlLQZBe6Ac/s1600/BonnieClyde-Fucks-Yoga-Instructor-Video-Leaked.jpg" alt="POST - 04" />
-      <h3>POST - 04</h3>
-      <button>Direct Video</button><br>
-      <button>Terabox</button><br>
-    </div>
-    <div class="card">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhK3DXZNICuusfgzjzG2dZsnrpzgvMqeelkfWC47e2IFIuHFeBYQVKOp1lfO0h_T3IiIkuqvDryhZ_RhRgr7hJX3vRrG0ohAY4-nqKFGzKtJsCtuX5qcl7ZWumi5-mNA7aCWZu_X3v15CRydNUvtrOcTbwhysuBevN7qwZsHUm1BkcPNiD2oJ4jMNIQHaI/s1600/Sarah-Illustrates-and-Ryan-Driller-Vegas-Hotel-Hook-Up-Video-Leaked.jpg" alt="POST - 05" />
-      <h3>POST - 05</h3>
-      <button>Direct Video</button><br>
-      <button>Terabox</button><br>
-    </div>
-    
-  </section>
+<header>
+  <div class="logo"><span>HDD</span><span>Play</span></div>
+</header>
 
-  <div class="copyright-footer">
-    &copy; 2025 HDD Play. All rights reserved.
-  </div>
+<h1 class="section-title">Desi MMS</h1>
 
-  <div class="floating-instagram">
-    <a href="https://www.instagram.com/_kaun_ishant?igsh=NTc4MTIwNjQ2YQ==" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
-    </a>
-  </div>
+<section class="grid">
+  <!-- Dynamic Posts will appear here -->
+</section>
 
-  <script>
-    const canvas = document.getElementById('particles-bg');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+<div class="copyright-footer">
+  &copy; 2025 HDD Play. All rights reserved.
+</div>
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+<div class="floating-instagram">
+  <a href="https://www.instagram.com/_kaun_ishant?igsh=NTc4MTIwNjQ2YQ==" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
+  </a>
+</div>
+
+<script>
+  const canvas = document.getElementById('particles-bg');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 2;
+      this.speedX = (Math.random() - 0.5) * 1;
+      this.speedY = (Math.random() - 0.5) * 1;
     }
 
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.radius = Math.random() * 2;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
     }
 
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < 150; i++) {
-        particles.push(new Particle());
-      }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
     }
+  }
 
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+
+  const SHEETDB_API = "https://sheetdb.io/api/v1/vb058q36gfp6e";
+  fetch(SHEETDB_API)
+    .then(response => response.json())
+    .then(data => {
+      const grid = document.querySelector('.grid');
+      grid.innerHTML = "";
+      data.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" />
+          <h3>${post.title}</h3>
+          <button onclick="window.open('${post.direct}', '_blank')">Direct Video</button><br>
+          <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button><br>
+        `;
+        grid.appendChild(card);
       });
-      requestAnimationFrame(animateParticles);
-    }
+    })
+    .catch(error => {
+      console.error("Error loading data:", error);
+    });
+</script>
 
-    initParticles();
-    animateParticles();
-  </script>
 </body>
 </html>
