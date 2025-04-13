@@ -39,12 +39,10 @@
     }
 
     .logo {
-      font-size: 3rem;
+      font-size: 2.7rem;
       font-weight: bold;
-    }
-
-    .logo span:first-child {
-      color: white;
+      display: flex;
+      align-items: center;
     }
 
     .logo span:last-child {
@@ -55,12 +53,23 @@
       margin-left: 0.2rem;
     }
 
-    .section-title {
+    .section-wrapper {
       text-align: center;
+    }
+
+    .section-title {
       font-size: 2.5rem;
-      margin: 2rem 0;
-      color: #c084fc;
-      line-height: 1.2;
+      margin: 2rem auto;
+      color: #ff4ecb;
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: typing 3s steps(30, end) forwards;
+    }
+
+    @keyframes typing {
+      from { max-width: 0; }
+      to { max-width: 100vw; }
     }
 
     .grid {
@@ -86,8 +95,9 @@
     }
 
     .card img {
-      max-width: 100%;
+      object-fit: cover;
       border-radius: 0.5rem;
+      max-width: 100%;
     }
 
     .card h3 {
@@ -97,7 +107,8 @@
 
     .card button {
       margin-top: 1rem;
-      padding: 0.5rem 1rem;
+      padding: 0.575rem 1.15rem;
+      font-size: 1.05rem;
       background: linear-gradient(to right, #a259ff, #6d28d9);
       color: white;
       border: none;
@@ -119,32 +130,41 @@
       margin-top: 4rem;
     }
 
-    .floating-instagram {
+    .floating-telegram {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background-color: white;
       width: 60px;
       height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
       cursor: pointer;
       z-index: 9999;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .floating-instagram:hover {
+    .floating-telegram:hover {
       transform: scale(1.1);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
     }
 
-    .floating-instagram img {
-      width: 35px;
-      height: 35px;
-      border-radius: 10px;
+    .floating-telegram img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+
+      .card button {
+        width: 100%;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -156,19 +176,21 @@
   <div class="logo"><span>HDD</span><span>Play</span></div>
 </header>
 
-<h1 class="section-title">Desi MMS</h1>
+<div class="section-wrapper">
+  <h1 class="section-title">Desi MMS</h1>
+</div>
 
-<section class="grid">
-  <!-- Dynamic Posts will appear here -->
+<section class="grid" id="postGrid">
+  <!-- Dynamic Posts -->
 </section>
 
 <div class="copyright-footer">
   &copy; 2025 HDD Play. All rights reserved.
 </div>
 
-<div class="floating-instagram">
-  <a href="https://www.instagram.com/_kaun_ishant?igsh=NTc4MTIwNjQ2YQ==" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
+<div class="floating-telegram">
+  <a href="https://t.me/instasuppooortrobot" target="_blank" aria-label="Telegram">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijf3cU_vxy_qaeBImzIOKEoKepWovdRitZxbE3ws296_Dg7v6Ttsg6Ss3uaedcfoL8HLBKIO8YeQp5HsvVEDkSK1CzvYrzaYTllz3jTeUy7sZs3o3unC4KpKdqx9KdcPpREvS4phafHti_5vv1wfaTRUfr7tsHo5Ps68kRGSEYIBRvO-YQb1yy7OWGjXU/s1000/Logo.png" alt="Telegram Icon">
   </a>
 </div>
 
@@ -229,10 +251,11 @@
   animateParticles();
 
   const SHEETDB_API = "https://sheetdb.io/api/v1/vb058q36gfp6e";
+
   fetch(SHEETDB_API)
     .then(response => response.json())
     .then(data => {
-      const grid = document.querySelector('.grid');
+      const grid = document.getElementById("postGrid");
       grid.innerHTML = "";
       data.forEach(post => {
         const card = document.createElement('div');
@@ -241,7 +264,7 @@
           <img src="${post.image}" alt="${post.title}" />
           <h3>${post.title}</h3>
           <button onclick="window.open('${post.direct}', '_blank')">Direct Video</button><br>
-          <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button><br>
+          <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button>
         `;
         grid.appendChild(card);
       });
