@@ -12,6 +12,12 @@
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+    p {
+  opacity: 0.7;
+}
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background-color: #0a0a0a;
@@ -58,7 +64,7 @@
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.125rem;
       margin: 2rem auto;
       color: #ff4ecb;
       white-space: nowrap;
@@ -86,11 +92,13 @@
       text-align: center;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       border: 2px solid transparent;
+      backdrop-filter: blur(8px);
+      will-change: transform;
     }
 
     .card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 0 20px #c084fc;
+      transform: translateY(-10px);
+      box-shadow: 0 4px 12px rgba(192, 132, 252, 0.4);
       border: 2px solid #c084fc;
     }
 
@@ -119,6 +127,32 @@
 
     .card button:hover {
       background: linear-gradient(to right, #6d28d9, #a259ff);
+    }
+
+    .skeleton {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      height: 300px;
+      animation: pulse 1.2s infinite;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .copyright-footer {
@@ -176,12 +210,24 @@
   <div class="logo"><span>HDD</span><span>Play</span></div>
 </header>
 
+<!-- Other Stuff -->
+<div class="section-wrapper">
+  <h1 class="section-title">Other Stuff</h1>
+</div>
+<section class="grid" id="staticGrid">
+  <div class="skeleton"></div>
+  <div class="skeleton"></div>
+  <div class="skeleton"></div>
+</section>
+
+<!-- Desi MMS -->
 <div class="section-wrapper">
   <h1 class="section-title">Desi MMS</h1>
 </div>
-
 <section class="grid" id="postGrid">
-  <!-- Dynamic Posts -->
+  <div class="skeleton"></div>
+  <div class="skeleton"></div>
+  <div class="skeleton"></div>
 </section>
 
 <div class="copyright-footer">
@@ -189,90 +235,63 @@
 </div>
 
 <div class="floating-telegram">
-  <a href="https://t.me/instasuppooortrobot" target="_blank" aria-label="Telegram">
+  <a href="https://t.me/instasuppooortrobot" target="_blank">
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijf3cU_vxy_qaeBImzIOKEoKepWovdRitZxbE3ws296_Dg7v6Ttsg6Ss3uaedcfoL8HLBKIO8YeQp5HsvVEDkSK1CzvYrzaYTllz3jTeUy7sZs3o3unC4KpKdqx9KdcPpREvS4phafHti_5vv1wfaTRUfr7tsHo5Ps68kRGSEYIBRvO-YQb1yy7OWGjXU/s1000/Logo.png" alt="Telegram Icon">
   </a>
 </div>
 
 <script>
-  const canvas = document.getElementById('particles-bg');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.radius = Math.random() * 2;
-      this.speedX = (Math.random() - 0.5) * 1;
-      this.speedY = (Math.random() - 0.5) * 1;
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'white';
-      ctx.fill();
-    }
-
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-  }
-
-  function initParticles() {
-    particles = [];
-    for (let i = 0; i < 150; i++) {
-      particles.push(new Particle());
-    }
-  }
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animateParticles);
-  }
-
-  initParticles();
-  animateParticles();
-
-  const SHEETDB_API = "https://sheetdb.io/api/v1/vb058q36gfp6e";
-
-  fetch(SHEETDB_API)
+  // Desi MMS from SheetDB
+  const desiAPI = "https://sheetdb.io/api/v1/vb058q36gfp6e";
+  fetch(desiAPI)
     .then(response => response.json())
     .then(data => {
       const grid = document.getElementById("postGrid");
       grid.innerHTML = "";
-      data.forEach(post => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${post.image}" alt="${post.title}" />
-          <h3>${post.title}</h3>
-          <button onclick="window.open('${post.direct}', '_blank')">Direct Video</button><br>
-          <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button>
-        `;
-        grid.appendChild(card);
+      data.forEach((post, index) => {
+        requestIdleCallback(() => {
+          const card = document.createElement('div');
+          card.className = 'card fade-in';
+          card.style.animationDelay = `${0.1 * (index + 1)}s`;
+          card.innerHTML = `
+            <img loading="lazy" src="${post.image}" alt="${post.title}" />
+            <h3>${post.title}</h3>
+            <button onclick="window.open('${post.direct}', '_blank')">Direct Video</button><br>
+            <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button>
+          `;
+          grid.appendChild(card);
+        });
       });
     })
     .catch(error => {
-      console.error("Error loading data:", error);
+      console.error("Failed to load Desi MMS:", error);
+    });
+
+  // Other Stuff from SheetDB
+  const otherAPI = "https://sheetdb.io/api/v1/vwgpkv3dgip7g";
+  fetch(otherAPI)
+    .then(response => response.json())
+    .then(data => {
+      const grid = document.getElementById("staticGrid");
+      grid.innerHTML = "";
+      data.forEach((post, index) => {
+        requestIdleCallback(() => {
+          const card = document.createElement('div');
+          card.className = 'card fade-in';
+          card.style.animationDelay = `${0.1 * (index + 1)}s`;
+          card.innerHTML = `
+            <img loading="lazy" src="${post.image}" alt="${post.title}" />
+            <h3>${post.title}</h3>
+            <button onclick="window.open('${post.direct}', '_blank')">Direct Video</button><br>
+            <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button>
+          `;
+          grid.appendChild(card);
+        });
+      });
+    })
+    .catch(error => {
+      console.error("Failed to load Other Stuff:", error);
     });
 </script>
-
 </body>
 </html>
