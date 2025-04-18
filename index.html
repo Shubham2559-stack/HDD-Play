@@ -85,6 +85,14 @@
       text-align: center;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       border: 2px solid transparent;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card.animate {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .card:hover {
@@ -172,7 +180,6 @@
         padding: 1rem;
       }
     }
-    
   </style>
 </head>
 <body>
@@ -214,6 +221,15 @@
 </div>
 
 <script>
+  // Popunder Ad - 1 hour control
+  if (!document.cookie.includes('popunder_shown')) {
+    let script = document.createElement('script');
+    script.src = '//pl26385973.profitableratecpm.com/14/30/84/1430847f386e3175ff28580c2ee539b7.js';
+    document.body.appendChild(script);
+    document.cookie = 'popunder_shown=true; max-age=3600';
+  }
+
+  // Canvas background
   const canvas = document.getElementById('particles-bg');
   const ctx = canvas.getContext('2d');
   let particles = [];
@@ -266,9 +282,30 @@
     requestAnimationFrame(animateParticles);
   }
 
-  initParticles();
-  animateParticles();
+  // Only start canvas if no cookie blocks it
+  if (!document.cookie.includes('no_canvas')) {
+    initParticles();
+    animateParticles();
+  }
 
+  // Scroll Animation Setup
+  function setupScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        } else {
+          entry.target.classList.remove('animate');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  }
+
+  setupScrollAnimations();
+
+  // Fetch Posts
   const SHEETDB_API = "https://sheetdb.io/api/v1/vb058q36gfp6e";
 
   fetch(SHEETDB_API)
@@ -287,6 +324,7 @@
         `;
         grid.appendChild(card);
       });
+      setupScrollAnimations(); // re-run on dynamic content
     })
     .catch(error => {
       console.error("Error loading data:", error);
