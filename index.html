@@ -1,1 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HDD Play</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #particles-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    header {
+      background-color: #1c1c1c;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2.7rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span:last-child {
+      color: black;
+      background-color: #FFA500;
+      padding: 0 0.3rem;
+      border-radius: 0.3rem;
+      margin-left: 0.2rem;
+    }
+
+    .section-wrapper {
+      text-align: center;
+      position: relative;
+      margin: 2rem 0 1rem;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      color: #c084fc;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: none;
+      animation: typing 3s steps(30, end) forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background-color: #1c1c1c;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s;
+      border: 2px solid transparent;
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+      will-change: transform, opacity;
+    }
+
+    .card.animate {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 0 20px #c084fc;
+      border: 2px solid #c084fc;
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    .card h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .card button {
+      margin-top: 0.5rem;
+      padding: 0.8rem 1rem;
+      font-size: 1.05rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #a259ff, #6d28d9);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    .card button:hover {
+      background: linear-gradient(to right, #6d28d9, #a259ff);
+    }
+
+    .skeleton {
+      background: #333;
+      border-radius: 0.5rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    .skeleton.image {
+      height: 150px;
+    }
+
+    .skeleton.title {
+      height: 20px;
+      margin: 15px auto;
+      width: 70%;
+    }
+
+    .skeleton.button {
+      height: 40px;
+      margin-top: 10px;
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    .copyright-footer {
+      background-color: #1c1c1c;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+
+      header {
+        padding: 1rem;
+      }
+
+      .card button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<canvas id="particles-bg"></canvas>
+
+<header>
+  <div class="logo"><span>HDD</span><span>Play</span></div>
+</header>
+
+<!-- Bonus Section -->
+<div class="section-wrapper">
+  <h1 class="section-title">Bonus Content</h1>
+</div>
+
+<section class="grid" id="bonusGrid">
+  <div class="card">
+    <div class="skeleton image"></div>
+    <div class="skeleton title"></div>
+    <div class="skeleton button"></div>
+  </div>
+</section>
+
+<!-- Desi MMS Section -->
+<div class="section-wrapper">
+  <h1 class="section-title">Instagram Posts</h1>
+</div>
+
+<section class="grid" id="postGrid">
+  <div class="card">
+    <div class="skeleton image"></div>
+    <div class="skeleton title"></div>
+    <div class="skeleton button"></div>
+    <div class="skeleton button"></div>
+  </div>
+</section>
+
+<div class="copyright-footer">
+  &copy; 2025 HDD Play. All rights reserved.
+</div>
+
+<script>
+  // Canvas particles
+  const canvas = document.getElementById('particles-bg');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 2;
+      this.speedX = (Math.random() - 0.5) * 0.7;
+      this.speedY = (Math.random() - 0.5) * 0.7;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+
+  initParticles();
+  animateParticles();
+
+  // Scroll animation with fade & parallax
+  function setupScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        } else {
+          entry.target.classList.remove('animate'); // allow retrigger
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  }
+
+  setupScrollAnimations();
+
+  // Replace with your SheetDB API URLs
+  const MMS_API = "https://sheetdb.io/api/v1/vb058q36gfp6e";
+  const BONUS_API = "https://sheetdb.io/api/v1/mpb2kmsud6aim";
+
+  // Load Desi MMS
+  fetch(MMS_API)
+    .then(res => res.json())
+    .then(data => {
+      const grid = document.getElementById("postGrid");
+      grid.innerHTML = "";
+      data.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" />
+          <h3>${post.title}</h3>
+          <button onclick="window.open('${post.direct}', '_blank')">Direct Video</button>
+          <button onclick="window.open('${post.terabox}', '_blank')">Terabox</button>
+        `;
+        grid.appendChild(card);
+      });
+      setupScrollAnimations();
+    });
+
+  // Load Bonus
+  fetch(BONUS_API)
+    .then(res => res.json())
+    .then(data => {
+      const grid = document.getElementById("bonusGrid");
+      grid.innerHTML = "";
+      data.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" />
+          <h3>${post.title}</h3>
+          <p>${post.description}</p>
+          <button onclick="window.open('${post.visit}', '_blank')">Visit</button>
+        `;
+        grid.appendChild(card);
+      });
+      setupScrollAnimations();
+    });
+</script>
+
+</body>
+</html>
